@@ -10,23 +10,32 @@ type NoteInputProps = {
 export function NoteInput({ handleCreateTodo }: NoteInputProps) {
   const [title, setTitle] = useState("");
 
-  const handleSubmit = () => {
-    if (!title.trim()) return;
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
-    handleCreateTodo(title);
+    const trimmedTitle = title.trim();
+
+    if (!trimmedTitle) return;
+
+    handleCreateTodo(trimmedTitle);
 
     setTitle("");
   };
 
   return (
-    <Field orientation="horizontal">
-      <Input
-        type="search"
-        placeholder="Type..."
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <Button onClick={() => handleSubmit()}>Add Todo</Button>
-    </Field>
+    <form onSubmit={handleSubmit}>
+      <Field orientation="horizontal">
+        <Input
+          type="search"
+          placeholder="Type..."
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+
+        <Button type="submit" disabled={!title.trim()}>
+          Add Todo
+        </Button>
+      </Field>
+    </form>
   );
 }
