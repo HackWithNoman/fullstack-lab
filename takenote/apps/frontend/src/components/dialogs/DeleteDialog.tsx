@@ -2,53 +2,42 @@
 
 import React from "react";
 import { Trash2 } from "lucide-react";
+import { useNotesContext } from "@/contexts/notes-context";
 
-interface DeleteDialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-  noteTitle: string;
-  isSubmitting: boolean;
-}
+export default function DeleteDialog() {
+  const {
+    isDeleteDialogOpen: isOpen,
+    closeDeleteDialog: onClose,
+    handleDeleteConfirm: onConfirm,
+    activeNote,
+    isDeleting: isSubmitting,
+  } = useNotesContext();
 
-export default function DeleteDialog({
-  isOpen,
-  onClose,
-  onConfirm,
-  noteTitle,
-  isSubmitting,
-}: DeleteDialogProps) {
-  
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Backdrop overlay blur */}
       <div
         className="fixed inset-0 bg-zinc-950/20 dark:bg-zinc-950/40 backdrop-blur-xs animate-fade-in"
         onClick={onClose}
       ></div>
 
-      {/* Safety alert dialog card */}
       <div className="bg-[#fdfdfd] dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/80 w-full max-w-sm rounded-2xl shadow-2xl relative z-10 overflow-hidden animate-scale-in">
         <div className="p-6 flex flex-col gap-4 text-center items-center">
-          
-          {/* Warning Icon */}
+
           <div className="h-11 w-11 rounded-full bg-red-50 dark:bg-red-950/20 text-red-500 flex items-center justify-center border border-red-100 dark:border-red-900/30">
             <Trash2 className="h-4.5 w-4.5" />
           </div>
 
-          {/* Title & Warning Content */}
           <div>
             <h2 className="text-sm font-extrabold tracking-tight text-zinc-800 dark:text-zinc-100">
               Discard Note Entry?
             </h2>
             <p className="text-xs text-zinc-400 dark:text-zinc-500 mt-2 max-w-[260px] leading-relaxed font-semibold">
-              Are you sure you want to permanently delete <strong className="text-zinc-650 dark:text-zinc-300">"{noteTitle}"</strong>? This action cannot be reversed.
+              Are you sure you want to permanently delete <strong className="text-zinc-650 dark:text-zinc-300">"{activeNote?.title || ""}"</strong>? This action cannot be reversed.
             </p>
           </div>
 
-          {/* Trigger Actions Grid */}
           <div className="flex items-center gap-3 w-full pt-2">
             <button
               onClick={onClose}
@@ -56,7 +45,7 @@ export default function DeleteDialog({
             >
               Keep Entry
             </button>
-            
+
             <button
               onClick={onConfirm}
               disabled={isSubmitting}
