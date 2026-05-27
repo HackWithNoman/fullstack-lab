@@ -22,7 +22,7 @@ export function useNotesQuery() {
   });
 
   const currentCategoryLabel =
-    CATEGORIES.find((cat) => cat.id === selectedCategory)?.label || "Spaces";
+    CATEGORIES.find((cat) => cat.id === selectedCategory)?.label || "Notes";
 
   return {
     notes,

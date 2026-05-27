@@ -11,23 +11,58 @@ import SelectField from "../ui/SelectField";
 import ColorThemePicker from "../ui/ColorThemePicker";
 
 const COLORS = [
-  { id: "slate", name: "Warm Oat", hex: "#71717a", ring: "ring-zinc-400 dark:ring-zinc-600" },
-  { id: "blue", name: "Misty Clay", hex: "#3b82f6", ring: "ring-blue-400 dark:ring-blue-600" },
-  { id: "emerald", name: "Earthy Sage", hex: "#10b981", ring: "ring-emerald-450 dark:ring-emerald-600" },
-  { id: "amber", name: "Harvest Mustard", hex: "#f59e0b", ring: "ring-amber-400 dark:ring-amber-600" },
-  { id: "rose", name: "Terracotta", hex: "#f43f5e", ring: "ring-rose-455 dark:ring-rose-600" },
-  { id: "violet", name: "Lavender Mist", hex: "#8b5cf6", ring: "ring-violet-400 dark:ring-violet-650" },
+  {
+    id: "slate",
+    name: "Warm Oat",
+    hex: "#71717a",
+    ring: "ring-zinc-400 dark:ring-zinc-600",
+  },
+  {
+    id: "blue",
+    name: "Misty Clay",
+    hex: "#3b82f6",
+    ring: "ring-blue-400 dark:ring-blue-600",
+  },
+  {
+    id: "emerald",
+    name: "Earthy Sage",
+    hex: "#10b981",
+    ring: "ring-emerald-450 dark:ring-emerald-600",
+  },
+  {
+    id: "amber",
+    name: "Harvest Mustard",
+    hex: "#f59e0b",
+    ring: "ring-amber-400 dark:ring-amber-600",
+  },
+  {
+    id: "rose",
+    name: "Terracotta",
+    hex: "#f43f5e",
+    ring: "ring-rose-455 dark:ring-rose-600",
+  },
+  {
+    id: "violet",
+    name: "Lavender Mist",
+    hex: "#8b5cf6",
+    ring: "ring-violet-400 dark:ring-violet-650",
+  },
 ];
 
 const CATEGORY_OPTIONS = [
-  { value: "general", label: "General Space" },
-  { value: "work", label: "Work & Projects" },
-  { value: "personal", label: "Personal Life" },
-  { value: "ideas", label: "Bright Ideas" },
-  { value: "tasks", label: "Action Tasks" },
+  { value: "general", label: "General" },
+  { value: "work", label: "Work" },
+  { value: "personal", label: "Personal" },
+  { value: "ideas", label: "Ideas" },
+  { value: "tasks", label: "Tasks" },
 ];
 
-const EMPTY_DEFAULTS = { title: "", content: "", category: "general" as const, color: "slate" as const };
+const EMPTY_DEFAULTS = {
+  title: "",
+  content: "",
+  category: "general" as const,
+  color: "slate" as const,
+};
 
 export default function NoteDialog() {
   const {
@@ -65,7 +100,6 @@ export default function NoteDialog() {
       ></div>
 
       <div className="bg-[#fdfdfd] dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/80 w-full max-w-lg rounded-2xl shadow-2xl relative z-10 overflow-hidden animate-scale-in">
-
         <div className="px-5.5 py-4.5 border-b border-zinc-150/50 dark:border-zinc-800/50 flex items-center justify-between">
           <h2 className="text-sm font-extrabold tracking-tight flex items-center gap-2 text-zinc-800 dark:text-zinc-100">
             {isEditMode ? (
@@ -94,8 +128,10 @@ export default function NoteDialog() {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="p-5.5 flex flex-col gap-4.5">
-
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="p-5.5 flex flex-col gap-4.5"
+        >
           <FormField
             label="Note Title"
             id="dialog-title"
@@ -105,9 +141,8 @@ export default function NoteDialog() {
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4.5">
-
             <SelectField
-              label="Space Category"
+              label="Category"
               id="dialog-category"
               options={CATEGORY_OPTIONS}
               {...register("category")}
@@ -125,7 +160,6 @@ export default function NoteDialog() {
                 />
               )}
             />
-
           </div>
 
           <FormField
@@ -159,7 +193,6 @@ export default function NoteDialog() {
               )}
             </button>
           </div>
-
         </form>
       </div>
     </div>

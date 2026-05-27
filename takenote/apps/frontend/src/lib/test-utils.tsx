@@ -18,10 +18,13 @@ const defaultContextValue: UseNotesManagerReturn = {
   isEditMode: false,
   isDeleteDialogOpen: false,
   closeDeleteDialog: () => {},
+  isViewDialogOpen: false,
+  closeViewDialog: () => {},
   activeNote: null,
   formDefaultValues: {},
   handleOpenCreate: () => {},
   handleOpenEdit: () => {},
+  handleOpenView: () => {},
   onSubmit: async () => {},
   handleOpenDelete: () => {},
   handleDeleteConfirm: async () => {},
@@ -48,7 +51,7 @@ function AllProviders({
 
 function renderWithNotesContext(
   ui: ReactElement,
-  options?: CustomRenderOptions
+  options?: CustomRenderOptions,
 ) {
   const { contextValue = {}, ...renderOptions } = options ?? {};
   return render(ui, {

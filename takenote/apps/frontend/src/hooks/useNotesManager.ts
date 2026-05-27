@@ -13,7 +13,9 @@ export function useNotesManager() {
   const mutations = useNotesMutations();
 
   useKeyboardShortcuts(() => {
-    const input = document.querySelector('input[type="text"]') as HTMLInputElement;
+    const input = document.querySelector(
+      'input[type="text"]',
+    ) as HTMLInputElement;
     input?.focus();
   });
 
@@ -45,6 +47,10 @@ export function useNotesManager() {
     await mutations.deleteNote.mutateAsync(store.activeNote.id);
   };
 
+  const handleOpenView = (note: Note) => {
+    store.openViewDialog(note);
+  };
+
   return {
     notes: query.notes,
     loading: query.loading,
@@ -60,6 +66,8 @@ export function useNotesManager() {
     isEditMode: store.isEditMode,
     isDeleteDialogOpen: store.isDeleteDialogOpen,
     closeDeleteDialog: store.closeDeleteDialog,
+    isViewDialogOpen: store.isViewDialogOpen,
+    closeViewDialog: store.closeViewDialog,
     activeNote: store.activeNote,
     formDefaultValues: store.formDefaultValues,
     handleOpenCreate,
@@ -67,6 +75,7 @@ export function useNotesManager() {
     onSubmit: handleSubmit,
     handleOpenDelete,
     handleDeleteConfirm,
+    handleOpenView,
     isDeleting: mutations.deleteNote.isPending,
   };
 }

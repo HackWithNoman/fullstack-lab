@@ -28,7 +28,12 @@ const mockNotes: Note[] = [
 describe("NoteGrid", () => {
   it("renders loading state", () => {
     renderWithNotesContext(<NoteGrid />, {
-      contextValue: { filteredNotes: [], loading: true, searchQuery: "", selectedCategory: "all" },
+      contextValue: {
+        filteredNotes: [],
+        loading: true,
+        searchQuery: "",
+        selectedCategory: "all",
+      },
     });
     const skeletons = document.querySelectorAll(".animate-pulse");
     expect(skeletons.length).toBeGreaterThan(0);
@@ -36,14 +41,26 @@ describe("NoteGrid", () => {
 
   it("renders empty state when no notes", () => {
     renderWithNotesContext(<NoteGrid />, {
-      contextValue: { filteredNotes: [], loading: false, searchQuery: "", selectedCategory: "all" },
+      contextValue: {
+        filteredNotes: [],
+        loading: false,
+        searchQuery: "",
+        selectedCategory: "all",
+      },
     });
-    expect(screen.getByText(/Your Digital Garden is Empty/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Your Digital Garden is Empty/),
+    ).toBeInTheDocument();
   });
 
   it("renders notes when provided", () => {
     renderWithNotesContext(<NoteGrid />, {
-      contextValue: { filteredNotes: mockNotes, loading: false, searchQuery: "", selectedCategory: "all" },
+      contextValue: {
+        filteredNotes: mockNotes,
+        loading: false,
+        searchQuery: "",
+        selectedCategory: "all",
+      },
     });
     expect(screen.getByText("Note One")).toBeInTheDocument();
     expect(screen.getByText("Note Two")).toBeInTheDocument();
@@ -51,7 +68,12 @@ describe("NoteGrid", () => {
 
   it("shows reset filters button when search is active with no results", () => {
     renderWithNotesContext(<NoteGrid />, {
-      contextValue: { filteredNotes: [], loading: false, searchQuery: "nonexistent", selectedCategory: "all" },
+      contextValue: {
+        filteredNotes: [],
+        loading: false,
+        searchQuery: "nonexistent",
+        selectedCategory: "all",
+      },
     });
     expect(screen.getByText("Reset All Filters")).toBeInTheDocument();
   });

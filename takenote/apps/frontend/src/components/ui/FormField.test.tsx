@@ -10,7 +10,7 @@ describe("FormField", () => {
         label="Note Title"
         id="test-title"
         placeholder="Enter title"
-      />
+      />,
     );
     expect(screen.getByLabelText("Note Title")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Enter title")).toBeInTheDocument();
@@ -23,7 +23,7 @@ describe("FormField", () => {
         id="test-content"
         placeholder="Enter content"
         textarea
-      />
+      />,
     );
     const textarea = screen.getByPlaceholderText("Enter content");
     expect(textarea.tagName).toBe("TEXTAREA");
@@ -31,11 +31,7 @@ describe("FormField", () => {
 
   it("displays error message", () => {
     render(
-      <FormField
-        label="Title"
-        id="test-title"
-        error="Title is required"
-      />
+      <FormField label="Title" id="test-title" error="Title is required" />,
     );
     expect(screen.getByText("Title is required")).toBeInTheDocument();
   });
@@ -43,13 +39,7 @@ describe("FormField", () => {
   it("calls onChange when typing", async () => {
     const user = userEvent.setup();
     const onChange = vi.fn();
-    render(
-      <FormField
-        label="Title"
-        id="test-title"
-        onChange={onChange}
-      />
-    );
+    render(<FormField label="Title" id="test-title" onChange={onChange} />);
     await user.type(screen.getByLabelText("Title"), "a");
     expect(onChange).toHaveBeenCalled();
   });

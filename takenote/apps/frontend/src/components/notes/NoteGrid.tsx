@@ -19,25 +19,17 @@ export default function NoteGrid() {
 
   if (loading) {
     return (
-      <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-        {[
-          "h-44",
-          "h-56",
-          "h-48",
-          "h-52",
-          "h-40",
-          "h-48"
-        ].map((heightClass, i) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[1, 2, 3, 4, 5, 6].map((i) => (
           <div
             key={i}
-            className={`break-inside-avoid w-full ${heightClass} rounded-2xl border border-zinc-200/50 dark:border-zinc-805/50 bg-white dark:bg-zinc-950 flex flex-col justify-between animate-pulse shadow-3xs relative overflow-hidden`}
+            className="w-full h-48 rounded-2xl border border-zinc-200/50 dark:border-zinc-805/50 bg-white dark:bg-zinc-950 flex flex-col justify-between animate-pulse shadow-3xs relative overflow-hidden"
           >
-            <div className="bg-zinc-50/50 dark:bg-zinc-900/15 border-b border-zinc-150/40 dark:border-zinc-850/40 px-5.5 py-3 flex items-center justify-between select-none">
+            <div className="bg-zinc-50/50 dark:bg-zinc-900/15 border-b border-zinc-150/40 dark:border-zinc-850/40 px-5.5 py-2.5 flex items-center select-none">
               <div className="h-4.5 w-16 bg-zinc-100 dark:bg-zinc-850 rounded-md"></div>
-              <div className="h-3 w-12 bg-zinc-100 dark:bg-zinc-850 rounded-md"></div>
             </div>
 
-            <div className="px-5.5 py-5 flex flex-col gap-2.5 flex-1">
+            <div className="px-5.5 py-4 flex flex-col gap-2 flex-1">
               <div className="flex items-center gap-2">
                 <div className="h-2.5 w-2.5 rounded-full bg-zinc-100 dark:bg-zinc-855 shrink-0"></div>
                 <div className="h-4.5 w-2/3 bg-zinc-100 dark:bg-zinc-850 rounded-md"></div>
@@ -48,8 +40,9 @@ export default function NoteGrid() {
               </div>
             </div>
 
-            <div className="flex items-center justify-end px-5.5 pb-4 mt-auto">
-              <div className="h-6 w-14 bg-zinc-100 dark:bg-zinc-850 rounded-md"></div>
+            <div className="flex items-center justify-between px-5.5 py-3 mt-auto border-t border-zinc-150/40 dark:border-zinc-850/45">
+              <div className="h-3 w-16 bg-zinc-100 dark:bg-zinc-850 rounded-md"></div>
+              <div className="h-6.5 w-14 bg-zinc-100 dark:bg-zinc-850 rounded-md animate-pulse"></div>
             </div>
           </div>
         ))}
@@ -95,11 +88,9 @@ export default function NoteGrid() {
   }
 
   return (
-    <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {filteredNotes.map((note) => (
-        <div key={note.id} className="break-inside-avoid w-full">
-          <NoteCard note={note} />
-        </div>
+        <NoteCard key={note.id} note={note} />
       ))}
     </div>
   );

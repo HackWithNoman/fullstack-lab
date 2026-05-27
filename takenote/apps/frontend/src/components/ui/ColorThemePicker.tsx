@@ -31,7 +31,7 @@ export function ColorThemePicker({
       <span className="text-[10px] font-bold text-zinc-455 dark:text-zinc-500 uppercase tracking-widest px-0.5">
         {label}
       </span>
-      
+
       <div className="flex items-center gap-2 h-9.5">
         {colors.map((color) => (
           <button

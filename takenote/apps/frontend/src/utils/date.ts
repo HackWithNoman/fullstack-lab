@@ -6,7 +6,7 @@ export function formatDate(isoString: string): string {
   if (!isoString) return "";
   const d = new Date(isoString);
   if (isNaN(d.getTime())) return "";
-  
+
   return d.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",

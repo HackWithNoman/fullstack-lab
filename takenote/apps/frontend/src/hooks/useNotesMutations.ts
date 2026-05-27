@@ -20,13 +20,8 @@ export function useNotesMutations() {
   });
 
   const updateNote = useMutation({
-    mutationFn: ({
-      id,
-      data,
-    }: {
-      id: string;
-      data: NoteFormData;
-    }) => api.updateNote(id, data),
+    mutationFn: ({ id, data }: { id: string; data: NoteFormData }) =>
+      api.updateNote(id, data),
     onSuccess: () => {
       invalidateNotes();
       closeDialog();

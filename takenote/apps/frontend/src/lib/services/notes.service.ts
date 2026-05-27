@@ -75,13 +75,11 @@ export const localStorageNotesService: NotesService = {
     const notes = getFromStore();
     return [...notes].sort(
       (a, b) =>
-        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
     );
   },
 
-  async createNote(
-    newNoteData: NoteFormData
-  ): Promise<Note> {
+  async createNote(newNoteData: NoteFormData): Promise<Note> {
     await delay(SIMULATED_LATENCY);
     const notes = getFromStore();
 
@@ -97,10 +95,7 @@ export const localStorageNotesService: NotesService = {
     return newNote;
   },
 
-  async updateNote(
-    id: string,
-    updates: NoteFormData
-  ): Promise<Note> {
+  async updateNote(id: string, updates: NoteFormData): Promise<Note> {
     await delay(SIMULATED_LATENCY);
     const notes = getFromStore();
     const index = notes.findIndex((note) => note.id === id);

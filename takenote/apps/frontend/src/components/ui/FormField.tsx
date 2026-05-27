@@ -3,7 +3,9 @@
 import React from "react";
 import { AlertCircle } from "lucide-react";
 
-interface FormFieldProps extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
+interface FormFieldProps extends React.InputHTMLAttributes<
+  HTMLInputElement | HTMLTextAreaElement
+> {
   label: string;
   id: string;
   error?: string;
@@ -15,8 +17,14 @@ interface FormFieldProps extends React.InputHTMLAttributes<HTMLInputElement | HT
  * Premium, reusable form field component supporting input elements and textareas
  * complete with inline error validations, labels, and Tailwind transitions.
  */
-export const FormField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, FormFieldProps>(
-  ({ label, id, error, textarea = false, rows = 4, className = "", ...props }, ref) => {
+export const FormField = React.forwardRef<
+  HTMLInputElement | HTMLTextAreaElement,
+  FormFieldProps
+>(
+  (
+    { label, id, error, textarea = false, rows = 4, className = "", ...props },
+    ref,
+  ) => {
     const inputStyle = `w-full px-3.5 py-2.5 text-xs rounded-xl border ${
       error
         ? "border-red-500/80 focus:ring-red-500/10 focus:border-red-500"
@@ -58,7 +66,7 @@ export const FormField = React.forwardRef<HTMLInputElement | HTMLTextAreaElement
         )}
       </div>
     );
-  }
+  },
 );
 
 FormField.displayName = "FormField";

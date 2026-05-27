@@ -8,6 +8,7 @@ interface NotesStore {
   isDialogOpen: boolean;
   isEditMode: boolean;
   isDeleteDialogOpen: boolean;
+  isViewDialogOpen: boolean;
   activeNote: Note | null;
   searchQuery: string;
   selectedCategory: string;
@@ -18,6 +19,8 @@ interface NotesStore {
   closeDialog: () => void;
   openDeleteDialog: (note: Note) => void;
   closeDeleteDialog: () => void;
+  openViewDialog: (note: Note) => void;
+  closeViewDialog: () => void;
   setSearchQuery: (query: string) => void;
   setSelectedCategory: (category: string) => void;
   resetFilters: () => void;
@@ -27,6 +30,7 @@ export const useNotesStore = create<NotesStore>((set) => ({
   isDialogOpen: false,
   isEditMode: false,
   isDeleteDialogOpen: false,
+  isViewDialogOpen: false,
   activeNote: null,
   searchQuery: "",
   selectedCategory: "all",
@@ -51,16 +55,13 @@ export const useNotesStore = create<NotesStore>((set) => ({
         color: note.color,
       },
     }),
-  closeDialog: () =>
-    set({ isDialogOpen: false, activeNote: null }),
+  closeDialog: () => set({ isDialogOpen: false, activeNote: null }),
   openDeleteDialog: (note) =>
     set({ isDeleteDialogOpen: true, activeNote: note }),
-  closeDeleteDialog: () =>
-    set({ isDeleteDialogOpen: false, activeNote: null }),
-  setSearchQuery: (searchQuery) =>
-    set({ searchQuery }),
-  setSelectedCategory: (selectedCategory) =>
-    set({ selectedCategory }),
-  resetFilters: () =>
-    set({ searchQuery: "", selectedCategory: "all" }),
+  closeDeleteDialog: () => set({ isDeleteDialogOpen: false, activeNote: null }),
+  openViewDialog: (note) => set({ isViewDialogOpen: true, activeNote: note }),
+  closeViewDialog: () => set({ isViewDialogOpen: false, activeNote: null }),
+  setSearchQuery: (searchQuery) => set({ searchQuery }),
+  setSelectedCategory: (selectedCategory) => set({ selectedCategory }),
+  resetFilters: () => set({ searchQuery: "", selectedCategory: "all" }),
 }));
