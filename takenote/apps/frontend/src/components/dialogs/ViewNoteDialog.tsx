@@ -93,7 +93,7 @@ export default function ViewNoteDialog() {
           </div>
 
           <div className="pl-5.5 ml-1.5 border-l border-zinc-150 dark:border-zinc-800/60 flex-1 py-1">
-            <p className="text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed font-semibold whitespace-pre-line break-words">
+            <p className="text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed font-semibold whitespace-pre-line wrap-break">
               {note.content}
             </p>
           </div>

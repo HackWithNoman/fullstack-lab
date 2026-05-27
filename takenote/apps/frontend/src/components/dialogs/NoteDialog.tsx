@@ -184,7 +184,7 @@ export default function NoteDialog() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="cursor-pointer inline-flex items-center justify-center min-w-[100px] px-5 py-2.5 rounded-xl text-xs font-bold bg-zinc-900 dark:bg-zinc-50 hover:bg-zinc-800 dark:hover:bg-zinc-200 text-zinc-50 dark:text-zinc-950 disabled:opacity-50 transition-colors shadow-xs"
+              className="cursor-pointer inline-flex items-center justify-center min-w-25 px-5 py-2.5 rounded-xl text-xs font-bold bg-zinc-900 dark:bg-zinc-50 hover:bg-zinc-800 dark:hover:bg-zinc-200 text-zinc-50 dark:text-zinc-950 disabled:opacity-50 transition-colors shadow-xs"
             >
               {isSubmitting ? (
                 <span className="h-4 w-4 border-2 border-white/30 border-t-white dark:border-zinc-950/30 dark:border-t-zinc-950 rounded-full animate-spin"></span>
